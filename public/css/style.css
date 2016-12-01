@@ -1,0 +1,83 @@
+.btn-link:focus,
+.btn-link:active:focus{
+    outline:none;
+}
+
+html, body {
+    height: 100%;
+}
+
+.fill {
+    height: 100%;
+}
+
+#sidebar {
+    /* for the animation */
+    -webkit-transition: margin 0.3s ease;
+    -moz-transition: margin 0.3s ease;
+    -o-transition: margin 0.3s ease;
+    transition: margin 0.3s ease;
+    left: -1px;
+    position: fixed;
+    z-index: 100;
+}
+
+.block{
+    padding-top: 60px;
+    padding-bottom: 5px;
+}
+
+.block-inside{
+    overflow: auto;
+}
+
+#sidebar-inside{
+    overflow-x: hidden;
+}
+
+#pad{
+    margin-left: -15px;
+    padding-left: 15px;
+    padding-right: 10px;
+}
+
+
+@media (max-width: 768px) {
+    #sidebar{
+        padding-right: 15%;
+    }
+}
+
+.collapsed {
+    margin-left: -100%;
+}
+
+#content {
+    /* for the animation */
+    -webkit-transition: width 0.3s ease;
+    -moz-transition: width 0.3s ease;
+    -o-transition: width 0.3s ease;
+    transition: width 0.3s ease;
+    float: right !important;
+}
+
+
+@media only screen and (min-width : 992px) {
+    .content-container{
+        max-width: 700px;
+    }
+}
+
+@media only screen and (min-width : 768px) {
+    .content-container{
+        max-width: 500px;
+    }
+}
+
+
+
+
+
+
+
+
