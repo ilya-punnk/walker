@@ -75,6 +75,14 @@ html, body {
 }
 
 
+.radio-block{
+    display: inline-block;
+    float: none;
+}
+
+.radio-inline{
+    vertical-align: middle;
+}
 
 
 
