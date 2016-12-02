@@ -3,16 +3,18 @@ var burger_click = function () {
     $('#content').toggleClass('col-sm-6 col-sm-12 col-md-8 col-md-12');
 };
 
-$('#burger_btn').click(burger_click);
 
 var SidebarController = function (toggle) {
 
     var toogleFunc = toggle;
 
+    var landscapeRatio = 1.2;
+
     var getScreenMode = function () {
-        if($('body').width()<767)return 0;
-        if($('body').width()<1200)return 1;
-        return 2;
+        if($(window).width()<767)return 0;
+        if($(window).width()<992)return 1;
+        if($(window).width()<1200)return 2;
+        return 3;
     };
 
     var screenModeChanged = function () {
@@ -22,6 +24,10 @@ var SidebarController = function (toggle) {
         }
         return false;
     };
+
+    var isLandscape = function () {
+        return $(window).width()>landscapeRatio*$(window).height();
+    };
     var sidebarChanger = function () {
         switch (this._screenMode){
             case 0:
@@ -30,11 +36,13 @@ var SidebarController = function (toggle) {
                 }
                 break;
             case 1:
-                if($("#sidebar").hasClass('collapsed')){
+            case 2:
+                if(($("#sidebar").hasClass('collapsed')&&isLandscape())||
+                    (!$("#sidebar").hasClass('collapsed')&&!isLandscape())){
                     toogleFunc();
                 }
                 break;
-            case 2:
+            case 3:
                 if($("#sidebar").hasClass('collapsed')){
                     toogleFunc();
                 }
@@ -49,15 +57,24 @@ var SidebarController = function (toggle) {
             sidebarChanger();
         }
     };
+
+    this.screenMode = function () {
+        return this._screenMode;
+    };
 };
 
-var test = function () {
-    if($('body').width()<992)return 0;
-    if($('body').width()<1200)return 1;
-    return 2;
-};
 
 var sidebarController = new SidebarController(burger_click);
+
+$('#burger_btn').click(burger_click);
+$('#sidebar').click(function(e) {
+    if (e.target !== this)
+        return;
+    if(sidebarController.screenMode()<2){
+        burger_click();
+    }
+
+});
 
 $( document ).ready(function() {
     sidebarController.control();

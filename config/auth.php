@@ -99,6 +99,6 @@ return [
         ],
     ],
 
-    'logins' => ['login', 'phone', 'email'],
+    'logins' => ['phone', 'email'],
 
 ];
